@@ -124,23 +124,48 @@ Po každém release:
 
 ---
 
-## 11. Distribuce — install na hodinky přes mobile app
+## 11. Distribuce — install/update na hodinky přes mobile app
 
 Od mobile v0.8.7 existuje `WatchInstallScreen` v zeddihub_tools_mobile (Účet → "Nainstalovat na hodinky"):
 
-- **Detekuje paired watch** přes `Wearable.NodeClient.connectedNodes`.
-- **3 install cesty:**
-  1. **Wear Installer 2** (recommended) — Play Store deeplink (`market://search?q=wear+installer`).
-  2. **Direct APK download** — otevře browser na `https://zeddihub.eu/downloads/ZeddiHub-GearOS-{ver}.apk`.
-  3. **ADB sideload** — instrukce pro pokročilé.
-- **Konstanta verze:** `GearOsVersion.LATEST` v `WatchInstallScreen.kt` — bumpnout při každém release.
+### Detekce stavu hodinek
+Přes `Wearable.NodeClient` + `CapabilityClient` mobile detekuje:
+- **None** — žádné spárované hodinky.
+- **PairedNotInstalled** — paired watch, ale `gearos_installed` capability chybí → first-time install.
+- **PairedInstalledUnknown** — `gearos_installed` ✓, ale žádná `gearos_v_<code>` capability → instalace existuje, ale nezveřejnila verzi.
+- **PairedInstalledUpToDate** — `gearos_v_<code>` ≥ `LATEST_CODE`.
+- **PairedInstalledOutdated** — `gearos_v_<code>` < `LATEST_CODE` → uživatel má zastaralou verzi, primární akce změní label na "Aktualizovat".
 
-**Cross-repo dependencies pro distribuci:**
+Capability publikuje GearOS:
+- Statická `gearos_installed` v `wear/src/main/res/values/wear.xml` (auto-discovery Wearable lib).
+- Dynamická `gearos_v_<versionCode>` v `MainActivity.onCreate` přes `CapabilityClient.addLocalCapability` (BuildConfig.VERSION_CODE).
+
+### On-demand download (žádný embed!)
+Mobile APK obsahuje **jen** UI — watch APK se stahuje **až po kliknutí** na primary CTA, přes Android `DownloadManager`:
+- Polling 700ms → `DownloadState.Downloading(percent)` → progress bar.
+- Cílová destinace: veřejná Downloads/ složka telefonu.
+- Po dokončení: `Intent.ACTION_VIEW` chooser s MIME `application/vnd.android.package-archive` → uživatel zvolí Wear Installer 2 / Galaxy Wearable / jiný installer pro transfer na hodinky.
+- Cancel + Retry handle.
+
+**Mobile APK velikost zůstává štíhlá** (~23 MB v0.8.7), watch APK (~19 MB) je v Downloads/ jen když ho uživatel chce.
+
+### Bumping versions
+Při novém GearOS releasu:
+1. Bumpni `versionCode/Name` v `wear/build.gradle.kts`.
+2. Build watch release APK, kopíruj do `zeddihub-tools-website/downloads/ZeddiHub-GearOS-{ver}.apk`.
+3. **V mobile** updatuj `GearOsVersion.LATEST` + `LATEST_CODE` v `WatchInstallScreen.kt`.
+4. Bumpni mobile `versionCode/Name` v `app/build.gradle.kts`.
+5. Build mobile release APK, deploy na web.
+6. Po updatu mobile appky uživatel uvidí "Aktualizovat na hodinkách" pokud má zastaralou verzi GearOS.
+
+**Cross-repo dependencies:**
 - `zeddihub-tools-website/downloads/ZeddiHub-GearOS-{ver}.apk` — APK source-of-truth.
-- `zeddihub-tools-website/tools/data/staged_releases.json` — entry s `platform: "watch"`, `target` filter v `app_releases.php` (M1 task).
-- `zeddihub_tools_mobile/app/src/main/java/.../ui/watch/WatchInstallScreen.kt` — UI vstup.
+- `zeddihub-tools-website/tools/data/staged_releases.json` — entry s `platform: "watch"`.
+- `zeddihub_tools_mobile/.../WatchInstallScreen.kt` — UI vstup + `GearOsVersion` konstanty.
+- `zeddihub-tools-gearos/wear/src/main/res/values/wear.xml` — statická capability.
+- `zeddihub-tools-gearos/wear/.../MainActivity.kt` — dynamická version capability.
 
-**Keystore sharing:** GearOS i mobile podepsané stejným klíčem (`zeddihub_tools_mobile/keystore/zeddihub-release.jks`) přes Windows directory junction `gearos/keystore -> mobile/keystore`. Nezbytné pokud bychom v budoucnu zapnuli `wearApp` embed.
+**Keystore sharing:** GearOS i mobile podepsané stejným klíčem (`zeddihub_tools_mobile/keystore/zeddihub-release.jks`) přes Windows junction `gearos/keystore -> mobile/keystore`.
 
 ---
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Statické Wearable capabilities — Wearable lib auto-discovers tento
+        string-array a publikuje je jakmile je app installed (i kdyby
+        MainActivity nikdy neběžel).
+
+        - gearos_installed: signál pro mobile companion, že GearOS běží
+          na spárovaných hodinkách. Mobile pak může zobrazit "Nainstalováno
+          na hodinkách" v WatchInstallScreen.
+
+        Verzi exposeujeme dynamicky v MainActivity přes addLocalCapability
+        s názvem `gearos_v_<versionCode>`, takže mobile může spočítat
+        update delta proti embedded versionCode.
+    -->
+    <string-array name="android_wear_capabilities">
+        <item>gearos_installed</item>
+    </string-array>
+</resources>
