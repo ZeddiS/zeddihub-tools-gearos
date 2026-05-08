@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ZeddiHub brand palette (sjednoceno s zeddihub.eu accent) -->
+    <color name="zeddi_orange">#FF8A1B</color>
+    <color name="zeddi_orange_dim">#B85F00</color>
+
+    <!-- Wear OS Material backgrounds (vždy black na AMOLED kvůli AOD) -->
+    <color name="bg_black">#000000</color>
+    <color name="surface_900">#0E0E10</color>
+    <color name="surface_800">#1B1B20</color>
+    <color name="surface_700">#2A2A30</color>
+
+    <!-- Status -->
+    <color name="status_online">#22C55E</color>
+    <color name="status_warn">#F59E0B</color>
+    <color name="status_offline">#EF4444</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B5B5BD</color>
+    <color name="text_disabled">#5F5F66</color>
+</resources>

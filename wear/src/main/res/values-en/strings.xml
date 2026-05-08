@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZeddiHub GearOS</string>
+    <string name="app_name_short">ZeddiHub</string>
+
+    <!-- Pairing -->
+    <string name="pairing_title">Pair watch</string>
+    <string name="pairing_instruction">Enter 6-digit code from phone or web:</string>
+    <string name="pairing_button_pair">Pair</string>
+    <string name="pairing_error_invalid">Invalid code</string>
+    <string name="pairing_error_expired">Code expired</string>
+
+    <!-- Home -->
+    <string name="home_signed_in">Signed in as %1$s</string>
+    <string name="home_servers">Servers</string>
+    <string name="home_alerts">Alerts</string>
+    <string name="home_totp">2FA codes</string>
+    <string name="home_panic">Panic</string>
+
+    <!-- Connection -->
+    <string name="conn_phone_connected">Phone connected</string>
+    <string name="conn_phone_disconnected">Phone out of range</string>
+    <string name="conn_offline">Offline</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_long_press">Hold to confirm</string>
+    <string name="confirm_panic">Really PANIC?</string>
+
+    <!-- Tile -->
+    <string name="tile_servers_label">ZeddiHub servers</string>
+
+    <!-- Complications -->
+    <string name="complication_ping_label">Ping</string>
+    <string name="complication_alerts_label">Alerts</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong</string>
+    <string name="error_network">Offline</string>
+
+    <!-- Actions -->
+    <string name="action_retry">Retry</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+</resources>

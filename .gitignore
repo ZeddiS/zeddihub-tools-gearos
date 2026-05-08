@@ -1,0 +1,65 @@
+# Built files
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Build outputs
+/build/
+**/build/
+**/.gradle/
+out/
+release/
+
+# Local config (never commit)
+local.properties
+keystore.properties
+keystore/
+*.jks
+*.keystore
+
+# Bundled toolchain (too large for git)
+tools/jdk17/
+tools/android-sdk/
+tools/gradle-cache/
+tools/downloads/
+tools/gdrive/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.fleet/
+
+# Android Studio
+captures/
+.externalNativeBuild/
+.cxx/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+hs_err_pid*
+
+# Firebase (must be added per environment)
+google-services.json
+**/google-services.json
+
+# Generated
+gen/
+.navigation/
+proguard-project.txt
+
+# Compose
+*.hprof
+*.dump
+
+# Kotlin
+.kotlin/

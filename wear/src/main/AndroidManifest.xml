@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <!-- Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Wearable Data Layer (companion sync) -->
+    <uses-permission android:name="com.google.android.gms.permission.WEARABLE_DATA_LAYER" />
+
+    <!-- Vibrace pro haptické potvrzení akcí -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Tile + Complication update worker -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- M3+: Push -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- M4+: Geofence (opt-in, vyžaduje runtime permission) -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
+
+    <!-- M5: Health Services (opt-in) -->
+    <!-- <uses-permission android:name="android.permission.BODY_SENSORS" /> -->
+    <!-- <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" /> -->
+
+    <application
+        android:name=".GearOsApp"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GearOS"
+        tools:targetApi="34">
+
+        <!-- Standalone Wear OS aplikace (nezávisí na párovaném telefonu pro běh) -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.GearOS.Splash"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboard|keyboardHidden|navigation|uiMode">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            M2+ — odkomentuj až bude implementováno:
+
+            <service
+                android:name=".tiles.ServerStatusTileService"
+                android:label="@string/tile_servers_label"
+                android:permission="com.google.android.wearable.permission.BIND_TILE_PROVIDER"
+                android:exported="true">
+                <intent-filter>
+                    <action android:name="androidx.wear.tiles.action.BIND_TILE_PROVIDER" />
+                </intent-filter>
+                <meta-data
+                    android:name="androidx.wear.tiles.PREVIEW"
+                    android:resource="@drawable/tile_servers_preview" />
+            </service>
+
+            <service
+                android:name=".complications.PingComplicationService"
+                android:label="@string/complication_ping_label"
+                android:icon="@drawable/ic_complication_ping"
+                android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER"
+                android:exported="true">
+                <intent-filter>
+                    <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+                </intent-filter>
+                <meta-data
+                    android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+                    android:value="SHORT_TEXT,RANGED_VALUE" />
+                <meta-data
+                    android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+                    android:value="600" />
+            </service>
+        -->
+
+        <!--
+            M3+ — Firebase Messaging service:
+
+            <service
+                android:name=".fcm.GearOsFcmService"
+                android:exported="false">
+                <intent-filter>
+                    <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                </intent-filter>
+            </service>
+        -->
+
+    </application>
+</manifest>

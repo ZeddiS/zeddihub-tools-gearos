@@ -1,0 +1,9 @@
+# Zkopíruj tento soubor jako `local.properties` a uprav cesty pro tvůj setup.
+# `local.properties` NIKDY necommituj do gitu.
+
+# Cesta k bundled Android SDK (relativní k root repu).
+# Po bootstrap z tools/README.md by mělo platit:
+sdk.dir=tools/android-sdk
+
+# Volitelně: cesta k bundled NDK (zatím nepotřeba)
+# ndk.dir=tools/android-sdk/ndk/26.2.11394342

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ZeddiHub GearOS</string>
+    <string name="app_name_short">ZeddiHub</string>
+
+    <!-- Pairing -->
+    <string name="pairing_title">Spárovat hodinky</string>
+    <string name="pairing_instruction">Zadej 6místný kód z mobilu nebo webu:</string>
+    <string name="pairing_button_pair">Spárovat</string>
+    <string name="pairing_error_invalid">Neplatný kód</string>
+    <string name="pairing_error_expired">Kód vypršel</string>
+
+    <!-- Home -->
+    <string name="home_signed_in">Přihlášen jako %1$s</string>
+    <string name="home_servers">Servery</string>
+    <string name="home_alerts">Alerty</string>
+    <string name="home_totp">2FA kódy</string>
+    <string name="home_panic">Panic</string>
+
+    <!-- Connection -->
+    <string name="conn_phone_connected">Telefon připojen</string>
+    <string name="conn_phone_disconnected">Telefon mimo dosah</string>
+    <string name="conn_offline">Offline</string>
+
+    <!-- Confirmations -->
+    <string name="confirm_long_press">Podrž pro potvrzení</string>
+    <string name="confirm_panic">Skutečně PANIC?</string>
+
+    <!-- Tile -->
+    <string name="tile_servers_label">ZeddiHub servery</string>
+
+    <!-- Complications -->
+    <string name="complication_ping_label">Ping</string>
+    <string name="complication_alerts_label">Alerty</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Něco se pokazilo</string>
+    <string name="error_network">Bez sítě</string>
+
+    <!-- Actions -->
+    <string name="action_retry">Zkusit znovu</string>
+    <string name="action_cancel">Zrušit</string>
+    <string name="action_ok">OK</string>
+</resources>
