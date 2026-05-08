@@ -113,6 +113,7 @@ dependencies {
 
     // Wearable Data Layer
     implementation(libs.play.services.wearable)
+    implementation(libs.kotlinx.coroutines.play.services)
 
     // Tiles
     implementation(libs.wear.tiles)

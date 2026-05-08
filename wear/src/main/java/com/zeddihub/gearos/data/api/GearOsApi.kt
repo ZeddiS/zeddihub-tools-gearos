@@ -8,7 +8,7 @@ import retrofit2.http.POST
 
 /**
  * Standalone fallback API endpointy.
- * Skutečné endpointy v `zeddihub-tools-website/api/watch/*` zatím neexistují (M1 cross-repo task).
+ * Skutečné endpointy v `zeddihub-tools-website/api/watch/...` zatím neexistují (M1 cross-repo task).
  */
 interface GearOsApi {
 
