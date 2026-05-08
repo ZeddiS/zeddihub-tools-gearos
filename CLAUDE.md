@@ -124,4 +124,24 @@ Po každém release:
 
 ---
 
-**Poslední update:** 2026-05-08 (M0 scaffold)
+## 11. Distribuce — install na hodinky přes mobile app
+
+Od mobile v0.8.7 existuje `WatchInstallScreen` v zeddihub_tools_mobile (Účet → "Nainstalovat na hodinky"):
+
+- **Detekuje paired watch** přes `Wearable.NodeClient.connectedNodes`.
+- **3 install cesty:**
+  1. **Wear Installer 2** (recommended) — Play Store deeplink (`market://search?q=wear+installer`).
+  2. **Direct APK download** — otevře browser na `https://zeddihub.eu/downloads/ZeddiHub-GearOS-{ver}.apk`.
+  3. **ADB sideload** — instrukce pro pokročilé.
+- **Konstanta verze:** `GearOsVersion.LATEST` v `WatchInstallScreen.kt` — bumpnout při každém release.
+
+**Cross-repo dependencies pro distribuci:**
+- `zeddihub-tools-website/downloads/ZeddiHub-GearOS-{ver}.apk` — APK source-of-truth.
+- `zeddihub-tools-website/tools/data/staged_releases.json` — entry s `platform: "watch"`, `target` filter v `app_releases.php` (M1 task).
+- `zeddihub_tools_mobile/app/src/main/java/.../ui/watch/WatchInstallScreen.kt` — UI vstup.
+
+**Keystore sharing:** GearOS i mobile podepsané stejným klíčem (`zeddihub_tools_mobile/keystore/zeddihub-release.jks`) přes Windows directory junction `gearos/keystore -> mobile/keystore`. Nezbytné pokud bychom v budoucnu zapnuli `wearApp` embed.
+
+---
+
+**Poslední update:** 2026-05-08 (v0.1.0 release + mobile install screen)
