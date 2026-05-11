@@ -23,8 +23,16 @@ android {
         applicationId = "com.zeddihub.gearos"
         minSdk = 30
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.1.0"
+        // v0.2.0 — Modern UI redesign:
+        //   - Paged dashboard se 4 stránkami (Dashboard / Servers / Actions / Settings)
+        //   - HorizontalPager + TimeText + Vignette + PositionIndicator + PageIndicator
+        //   - ScalingLazyColumn per page se sdíleným list state
+        //   - ZeddiHub orange brand + accent colors per page (blue/emerald/purple/slate)
+        //   - Common composables: StatusDot, InfoPill, ZeddiActionChip, ServerRow, etc.
+        //   - DemoData mock store pro UI scaffold (M1 nahradí Wearable Data Layer)
+        //   - Pairing screen redesign: 6-digit slots + numerický keypad + visual progress
+        versionCode = 2
+        versionName = "0.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
